@@ -28,5 +28,16 @@ function createLinkedListFromArray(arr) {
     return head;
 }
 
+LinkedList.prototype.traverse = function(func) {
+    func(this);
+    if (this.next() !== null) {
+        this.next().traverse(func);
+    }
+}
+
+LinkedList.prototype.print = function() {
+    this.traverse(function (node) {console.log(node.value())});
+}
+
 let head = createLinkedListFromArray([10,20,25,33]);
-console.log(head);
+head.print();
